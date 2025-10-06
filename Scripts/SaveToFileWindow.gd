@@ -12,4 +12,5 @@ func _process(delta):
 
 # when the save to file button is pressed, show this window
 func _on_save_to_file_pressed():
+	self.current_dir = "res://SystemsData"
 	self.show()
