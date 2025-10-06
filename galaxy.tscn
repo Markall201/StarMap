@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://cd2qx8kqldnwb"]
+
+[ext_resource type="Script" path="res://Scripts/galaxy.gd" id="1_of44j"]
+
+[node name="Galaxy" type="Node3D"]
+script = ExtResource("1_of44j")
+numberOfSystems = 2000
+galaxyRadius = 100
+galaxyThickness = 10

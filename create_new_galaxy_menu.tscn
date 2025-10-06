@@ -1,0 +1,58 @@
+[gd_scene load_steps=3 format=3 uid="uid://bu1qcfh2q7j0k"]
+
+[ext_resource type="PackedScene" uid="uid://bdtl8huhee6gd" path="res://menu-field-property-label.tscn" id="1_0osx3"]
+[ext_resource type="Script" path="res://Scripts/create_new_galaxy_menu.gd" id="1_2tsn8"]
+
+[node name="Create New Galaxy Menu" type="Control"]
+custom_minimum_size = Vector2(320, 240)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_2tsn8")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="fieldctl_numberOfSystems" parent="MarginContainer/VBoxContainer" instance=ExtResource("1_0osx3")]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+label = "Number of Systems"
+
+[node name="fieldctl_seed" parent="MarginContainer/VBoxContainer" instance=ExtResource("1_0osx3")]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+label = "Seed"
+
+[node name="fieldctl_galaxyThickness" parent="MarginContainer/VBoxContainer" instance=ExtResource("1_0osx3")]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+label = "Galaxy Thickness"
+
+[node name="fieldctl_galaxyRadius" parent="MarginContainer/VBoxContainer" instance=ExtResource("1_0osx3")]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+label = "Galaxy Radius"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="New Map" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "New Map"
+
+[node name="Back" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Back"
+
+[connection signal="valueChange" from="MarginContainer/VBoxContainer/fieldctl_numberOfSystems" to="." method="_on_fieldctl_number_of_systems_value_change"]
+[connection signal="valueChange" from="MarginContainer/VBoxContainer/fieldctl_seed" to="." method="_on_fieldctl_seed_value_change"]
+[connection signal="valueChange" from="MarginContainer/VBoxContainer/fieldctl_galaxyThickness" to="." method="_on_fieldctl_galaxy_thickness_value_change"]
+[connection signal="valueChange" from="MarginContainer/VBoxContainer/fieldctl_galaxyRadius" to="." method="_on_fieldctl_galaxy_radius_value_change"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/New Map" to="." method="_on_new_map_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/Back" to="." method="_on_back_pressed"]

@@ -1,0 +1,248 @@
+[gd_scene load_steps=13 format=3 uid="uid://b618swd7oamxh"]
+
+[ext_resource type="Script" path="res://Scripts/Starmap.gd" id="1_arhij"]
+[ext_resource type="FontFile" uid="uid://780aih6mfcg" path="res://Assets/Fonts/Oxanium-VariableFont_wght.ttf" id="1_ubgmd"]
+[ext_resource type="Script" path="res://Scripts/GalMapManager.gd" id="2_jg22p"]
+[ext_resource type="Theme" uid="uid://cgxpcs3vkoadb" path="res://Assets/UI/UI_theme.tres" id="4_ls54l"]
+[ext_resource type="PackedScene" uid="uid://g5mdithl30jt" path="res://main_menu.tscn" id="5_7wsl1"]
+[ext_resource type="Script" path="res://Scripts/SaveToFileWindow.gd" id="5_x7nek"]
+[ext_resource type="PackedScene" uid="uid://bu1qcfh2q7j0k" path="res://create_new_galaxy_menu.tscn" id="6_23kmw"]
+
+[sub_resource type="Theme" id="Theme_j5xfp"]
+default_base_scale = 1.0
+default_font = ExtResource("1_ubgmd")
+default_font_size = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8gt82"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_55fxp"]
+
+[sub_resource type="Sky" id="Sky_w0fkf"]
+sky_material = SubResource("PanoramaSkyMaterial_55fxp")
+
+[sub_resource type="Environment" id="Environment_c7pah"]
+background_mode = 1
+sky = SubResource("Sky_w0fkf")
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.0
+
+[node name="Main" type="Node3D"]
+
+[node name="Starmap" type="Node3D" parent="."]
+script = ExtResource("1_arhij")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Starmap"]
+visible = false
+
+[node name="Panel" type="Panel" parent="Starmap/CanvasLayer"]
+z_index = 10
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -218.0
+offset_top = -249.5
+offset_bottom = 249.5
+grow_horizontal = 0
+grow_vertical = 2
+theme = SubResource("Theme_j5xfp")
+theme_override_styles/panel = SubResource("StyleBoxFlat_8gt82")
+
+[node name="Control" type="Control" parent="Starmap/CanvasLayer/Panel"]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 0
+size_flags_horizontal = 8
+theme = ExtResource("4_ls54l")
+script = ExtResource("2_jg22p")
+
+[node name="SystemNameLabel" type="Label" parent="Starmap/CanvasLayer/Panel/Control"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 15.0
+offset_top = 20.0
+offset_right = 178.0
+offset_bottom = 45.0
+text = "SYSTEM NAME:
+"
+
+[node name="System Label" type="TextEdit" parent="Starmap/CanvasLayer/Panel/Control"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 15.0
+offset_top = 40.0
+offset_right = 178.0
+offset_bottom = 63.0
+placeholder_text = "SYSTEM NAME HERE"
+
+[node name="NumberOfStarsLabel" type="Label" parent="Starmap/CanvasLayer/Panel/Control"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 15.0
+offset_top = 80.0
+offset_right = 178.0
+offset_bottom = 105.0
+text = "NUMBER OF STARS:
+
+"
+
+[node name="System Stars" type="LineEdit" parent="Starmap/CanvasLayer/Panel/Control"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 15.0
+offset_top = 100.0
+offset_right = 178.0
+offset_bottom = 125.0
+placeholder_text = "0"
+
+[node name="NumberOfPlanetsLabel" type="Label" parent="Starmap/CanvasLayer/Panel/Control"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 15.0
+offset_top = 140.0
+offset_right = 180.0
+offset_bottom = 165.0
+text = "NUMBER OF PLANETS: 
+"
+
+[node name="System Planets" type="LineEdit" parent="Starmap/CanvasLayer/Panel/Control"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 15.0
+offset_top = 160.0
+offset_right = 192.0
+offset_bottom = 185.0
+placeholder_text = "0"
+
+[node name="CoordsLabel" type="Label" parent="Starmap/CanvasLayer/Panel/Control"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 15.0
+offset_top = 200.0
+offset_right = 180.0
+offset_bottom = 237.0
+text = "COORDINATES:
+
+"
+
+[node name="System CoordsX" type="LineEdit" parent="Starmap/CanvasLayer/Panel/Control"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 15.0
+offset_top = 220.0
+offset_right = 178.0
+offset_bottom = 245.0
+placeholder_text = "-88.88"
+
+[node name="System CoordsY" type="LineEdit" parent="Starmap/CanvasLayer/Panel/Control"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 15.0
+offset_top = 240.0
+offset_right = 178.0
+offset_bottom = 265.0
+placeholder_text = "-88.88"
+
+[node name="System CoordsZ" type="LineEdit" parent="Starmap/CanvasLayer/Panel/Control"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 15.0
+offset_top = 260.0
+offset_right = 178.0
+offset_bottom = 285.0
+placeholder_text = "-88.88"
+
+[node name="SeedLabel" type="Label" parent="Starmap/CanvasLayer/Panel/Control"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 15.0
+offset_top = 300.0
+offset_right = 180.0
+offset_bottom = 337.0
+text = "SEED:
+"
+
+[node name="System Seed" type="LineEdit" parent="Starmap/CanvasLayer/Panel/Control"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 15.0
+offset_top = 320.0
+offset_right = 178.0
+offset_bottom = 345.0
+placeholder_text = "88888888"
+
+[node name="FactionLabel" type="Label" parent="Starmap/CanvasLayer/Panel/Control"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 15.0
+offset_top = 360.0
+offset_right = 180.0
+offset_bottom = 397.0
+text = "FACTION:
+
+"
+
+[node name="System Faction" type="LineEdit" parent="Starmap/CanvasLayer/Panel/Control"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 15.0
+offset_top = 380.0
+offset_right = 178.0
+offset_bottom = 405.0
+placeholder_text = "NONE"
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Starmap"]
+environment = SubResource("Environment_c7pah")
+
+[node name="Camera3D" type="Camera3D" parent="Starmap"]
+transform = Transform3D(-1, 8.74228e-08, 3.82137e-15, 0, -4.37114e-08, 1, 8.74228e-08, 1, 4.37114e-08, -15, 200, 0)
+
+[node name="Menu UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme = ExtResource("4_ls54l")
+
+[node name="SaveToFileWindow" type="FileDialog" parent="Menu UI"]
+title = "Save to File"
+initial_position = 1
+size = Vector2i(640, 480)
+use_native_dialog = true
+script = ExtResource("5_x7nek")
+
+[node name="LoadFromFileWindow" type="FileDialog" parent="Menu UI"]
+title = "Open a File"
+initial_position = 1
+size = Vector2i(640, 480)
+ok_button_text = "Open"
+file_mode = 0
+use_native_dialog = true
+
+[node name="Main Menu" parent="Menu UI" instance=ExtResource("5_7wsl1")]
+metadata/_edit_use_anchors_ = true
+
+[node name="Create New Galaxy Menu" parent="Menu UI" instance=ExtResource("6_23kmw")]
+visible = false
+offset_right = 320.0
+offset_bottom = 240.0
+
+[node name="Save to File" type="Button" parent="Menu UI"]
+visible = false
+layout_mode = 0
+offset_left = 935.0
+offset_top = 593.0
+offset_right = 1027.0
+offset_bottom = 618.0
+text = "Save to File"
+
+[connection signal="file_selected" from="Menu UI/SaveToFileWindow" to="Starmap" method="_on_save_to_file_window_file_selected"]
+[connection signal="file_selected" from="Menu UI/LoadFromFileWindow" to="Starmap" method="_on_load_file_selected"]
+[connection signal="createNewMap" from="Menu UI/Create New Galaxy Menu" to="Starmap" method="_on_create_new_galaxy_menu_create_new_map"]
+[connection signal="pressed" from="Menu UI/Save to File" to="Menu UI/SaveToFileWindow" method="_on_save_to_file_pressed"]
